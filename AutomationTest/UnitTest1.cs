@@ -1,5 +1,7 @@
+using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium;
-using Xunit;
+using WebDriverManager.DriverConfigs.Impl;
+using WebDriverManager;
 using Xunit.Abstractions;
 
 namespace AutomationTest
@@ -13,12 +15,13 @@ namespace AutomationTest
         {
             this.webDriverConfig = webDriverConfig;
             this.testOutputHelper = testOutputHelper;
+
         }
 
         [Fact] //1st test ExecuteTest
         public void Test1()
         {
-            var driver = webDriverConfig.ChromeDriver;
+           var driver = webDriverConfig.ChromeDriver;
             //Declare first test
             testOutputHelper.WriteLine("First Test");
             //Navigate to URL
@@ -31,16 +34,10 @@ namespace AutomationTest
             search.SendKeys("selenium training");
             //Declare test is complete
             testOutputHelper.WriteLine("Test complete");
-        }
 
-        [Fact] //2nd test
-
-        public void Test2()
-        {
-            var driver = webDriverConfig.ChromeDriver;
-            testOutputHelper.WriteLine("Second Test");
-            driver.Navigate().GoToUrl("https://www.github.com/");
-            driver.Manage().Window.Maximize();
         }
+    
     }
 }
+
+
