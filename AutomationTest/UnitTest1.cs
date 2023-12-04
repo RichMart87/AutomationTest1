@@ -1,3 +1,4 @@
+using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
 using OpenQA.Selenium;
 using Xunit;
 using Xunit.Abstractions;
@@ -16,7 +17,7 @@ namespace AutomationTest
         }
 
         [Fact] //1st test ExecuteTest
-        public void Test1()
+        public void GoToGoogle()
         {
             var driver = webDriverConfig.ChromeDriver;
             //Declare first test
@@ -35,12 +36,16 @@ namespace AutomationTest
 
         [Fact] //2nd test
 
-        public void Test2()
+        public void GoToGitHub()
         {
+            var expectedUrl = "https://github.com/";
             var driver = webDriverConfig.ChromeDriver;
             testOutputHelper.WriteLine("Second Test");
             driver.Navigate().GoToUrl("https://www.github.com/");
             driver.Manage().Window.Maximize();
+
+            //Check that we made it to expected page
+            Assert.Equal(expectedUrl,driver.Url);
         }
     }
 }
